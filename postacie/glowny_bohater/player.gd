@@ -1,5 +1,7 @@
 extends Area2D
 @export var speed = 200 
+@export var ser: PackedScene = preload("res://narzedzia/ser/ser.tscn")
+@onready var sprite = $Sprite2D
 var screen_size
 var magik = load("res://grafiki/szczur_transform.png")
 
@@ -23,7 +25,8 @@ func _process(delta):
 		$Sprite2D.texture = magik
 		$Sprite2D.show()
 		$AnimatedSprite2D.hide()
-		$mieczyk_myszka.hide() 
+		$mieczyk_myszka.hide()
+	
 	if velocity.x != 0:
 		$Sprite2D.flip_v = false
 		$Sprite2D.flip_h = velocity.x > 0
@@ -42,3 +45,15 @@ func _process(delta):
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x > 0
 	
+	
+func _input(event):
+	if not sprite.visible:
+		return
+	if event is InputEventMouseButton and event.pressed:
+		var ser_instance = ser.instantiate()
+		ser_instance.position = position
+		
+		var target = get_global_mouse_position()
+		ser_instance.direction = (target - position).normalized()
+		
+		get_tree().current_scene.add_child(ser_instance)

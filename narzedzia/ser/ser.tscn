@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://btabaqt7xxhbx"]
+
+[ext_resource type="Script" uid="uid://cg4ugj4euwby8" path="res://narzedzia/ser/ser.gd" id="1_setpf"]
+[ext_resource type="Texture2D" uid="uid://chvvn3txhri7v" path="res://grafiki/ser.png" id="1_x4tsd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_setpf"]
+size = Vector2(7.3999996, 5.5)
+
+[node name="Ser" type="Area2D" unique_id=210880181]
+script = ExtResource("1_setpf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1514675989]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_x4tsd")
+script = ExtResource("1_setpf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1160287218]
+position = Vector2(0, -4.5)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_setpf")
